@@ -4,6 +4,32 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
+const CRUDRoutes =[{
+  path: '/Blend/Create',
+  name: 'Create Blend',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/Blend/Create.vue'),
+  meta: { requiresAuth: true, layout:'main' }
+},{
+  path: '/Blend/Edit',
+  name: 'Edit Blend',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/Blend/Edit.vue'),
+  meta: { requiresAuth: true, layout:'main' }
+},{
+  path: '/Blend/List',
+  name: 'Create List',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/Blend/List.vue'),
+  meta: { requiresAuth: true, layout:'main' }
+}]
+
 const routes = [
   {
     path: '/',
@@ -19,7 +45,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
     meta: { requiresAuth: true, layout:'main' }
-  },{
+  }].concat(CRUDRoutes).concat([{
     path: '/login',
     name: 'login',
     // route level code-splitting
@@ -35,8 +61,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/NotFound.vue'),
     meta: { requiresAuth: false, layout:'centered' }
-  }
-]
+  }]);
 
 const router = new VueRouter({
   mode: 'history',

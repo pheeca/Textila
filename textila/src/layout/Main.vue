@@ -13,7 +13,7 @@
             align="center"
           >
             <v-col cols="6">
-              <v-subheader v-if="item.heading">
+              <v-subheader v-if="item.heading" >
                 {{ item.heading }}
               </v-subheader>
             </v-col>
@@ -44,7 +44,7 @@
             <v-list-item
               v-for="(child, i) in item.children"
               :key="i"
-              link
+               :to="child.link"
             >
               <v-list-item-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
@@ -59,13 +59,13 @@
           <v-list-item
             v-else
             :key="item.text"
-            link
+            :to="item.link"
           >
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>
+              <v-list-item-title  >
                 {{ item.text }}
               </v-list-item-title>
             </v-list-item-content>
@@ -85,23 +85,23 @@
         style="width: 300px"
         class="ml-0 pl-4"
       >
-        <span class="hidden-sm-and-down">Google Contacts</span>
+        <span class="hidden-sm-and-down">Textila</span>
       </v-toolbar-title>
-      <v-text-field
+      <!--<v-text-field
         flat
         solo-inverted
         hide-details
         prepend-inner-icon="mdi-magnify"
         label="Search"
         class="hidden-sm-and-down"
-      />
+      />-->
       <v-spacer />
       <v-btn icon>
         <v-icon>mdi-apps</v-icon>
       </v-btn>
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>
-      </v-btn>
+      </v-btn><!--
       <v-btn
         icon
         large
@@ -114,7 +114,7 @@
             src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
             alt="Vuetify"
           /></v-avatar>
-      </v-btn>
+      </v-btn>-->
     </v-app-bar>
     <slot></slot>
   </v-app>
@@ -129,16 +129,16 @@
       dialog: false,
       drawer: null,
       items: [
-        { icon: 'mdi-contacts', text: 'Contacts' },
-        { icon: 'mdi-history', text: 'Frequently contacted' },
-        { icon: 'mdi-content-copy', text: 'Duplicates' },
+        { icon: 'mdi-contacts', text: 'Home', link:'/' },
+        { icon: 'mdi-history', text: 'About', link:'/About' },
+        { icon: 'mdi-content-copy', text: 'Duplicates', link: '/blend/create'},
         {
           icon: 'mdi-chevron-up',
           'icon-alt': 'mdi-chevron-down',
           text: 'Labels',
           model: true,
           children: [
-            { icon: 'mdi-plus', text: 'Create label' },
+            { icon: 'mdi-plus', text: 'Create label', link:'/' },
           ],
         },
         {
