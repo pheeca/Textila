@@ -9,7 +9,7 @@
     "lint": "vue-cli-service lint",
     "postbuild": "npm run createdir && npm run copytoserver",
     "createdir": "shx mkdir -p ../Textila.Web/Content ../Textila.Web/Scripts ../Textila.Web/fonts ../Textila.Web/img ../Textila.Web/Views/Home",
-    "copytoserver":"shx cp -r dist\\Content\\* ../Textila.Web/Content && shx cp -r dist\\Scripts\\* ../Textila.Web/Scripts && shx cp -r dist\\fonts\\* ../Textila.Web/fonts && shx cp -r dist\\img\\* ../Textila.Web/img && shx cp -r dist\\*.ico ../Textila.Web/ && shx cp -r dist\\*.html ../Textila.Web/Views/Home"
+    "copytoserver": "shx cp -r dist\\Content\\* ../Textila.Web/Content && shx cp -r dist\\Scripts\\* ../Textila.Web/Scripts && shx cp -r dist\\fonts\\* ../Textila.Web/fonts && shx cp -r dist\\img\\* ../Textila.Web/img && shx cp -r dist\\*.ico ../Textila.Web/ && shx cp -r dist\\*.html ../Textila.Web/Views/Home"
   },
   "dependencies": {
     "axios": "^0.19.2",

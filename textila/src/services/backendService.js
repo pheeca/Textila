@@ -20,7 +20,7 @@ export default {
       })
     },
     getPosts () {
-      return  this.execute('get', '/Count')
+      return  this.execute('get', '/api/count/1')
     },
     getPost (id) {
       return this.execute('get', `/posts/${id}`)
