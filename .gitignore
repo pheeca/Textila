@@ -44,3 +44,5 @@ yarn-error.log*
 
 # .Net directories and files
 packages
+ 
+*.Release.config

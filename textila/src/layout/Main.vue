@@ -131,7 +131,7 @@
       items: [
         { icon: 'mdi-contacts', text: 'Home', link:'/' },
         { icon: 'mdi-history', text: 'About', link:'/About' },
-        { icon: 'mdi-content-copy', text: 'Duplicates', link: '/blend/create'},
+        { icon: 'mdi-content-copy', text: 'Duplicates', link: '/blend'},
         {
           icon: 'mdi-chevron-up',
           'icon-alt': 'mdi-chevron-down',

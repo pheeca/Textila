@@ -7,9 +7,11 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "postbuild": "npm run createdir && npm run copytoserver",
+    "postbuild": "npm run createdir && npm run copytoserver && npm run prodUI",
     "createdir": "shx mkdir -p ../Textila.Web/Content ../Textila.Web/Scripts ../Textila.Web/fonts ../Textila.Web/img ../Textila.Web/Views/Home",
-    "copytoserver": "shx cp -r dist\\Content\\* ../Textila.Web/Content && shx cp -r dist\\Scripts\\* ../Textila.Web/Scripts && shx cp -r dist\\fonts\\* ../Textila.Web/fonts && shx cp -r dist\\img\\* ../Textila.Web/img && shx cp -r dist\\*.ico ../Textila.Web/ && shx cp -r dist\\*.html ../Textila.Web/Views/Home"
+    "copytoserver": "shx cp -r dist\\Content\\* ../Textila.Web/Content && shx cp -r dist\\Scripts\\* ../Textila.Web/Scripts && shx cp -r dist\\fonts\\* ../Textila.Web/fonts && shx cp -r dist\\img\\* ../Textila.Web/img && shx cp -r dist\\*.ico ../Textila.Web/ && shx cp -r dist\\*.html ../Textila.Web/Views/Home",
+    "prodUI": "shx mkdir -p prodUI prodUI/Content prodUI/Scripts prodUI/fonts prodUI/img prodUI/Views/Home && shx cp -r dist\\Content\\* prodUI/Content && shx cp -r dist\\Scripts\\* prodUI/Scripts && shx cp -r dist\\fonts\\* prodUI/fonts && shx cp -r dist\\img\\* prodUI/img && shx cp -r dist\\*.ico prodUI/ && shx cp -r dist\\*.html prodUI/Views/Home && cd prodUI && bestzip ..\\bundle.zip * && cd ../ && shx rm /prodUI",
+    "test": "del prodUI\\* /Q /S *.*"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -25,6 +27,7 @@
     "@vue/cli-plugin-router": "^4.1.2",
     "@vue/cli-service": "^4.1.0",
     "babel-eslint": "^10.0.3",
+    "bestzip": "^2.1.5",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "sass": "^1.19.0",

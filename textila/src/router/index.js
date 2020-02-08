@@ -21,7 +21,7 @@ const CRUDRoutes =[{
   component: () => import(/* webpackChunkName: "about" */ '../views/Blend/Edit.vue'),
   meta: { requiresAuth: true, layout:'main' }
 },{
-  path: '/Blend/List',
+  path: '/Blend',
   name: 'Create List',
   // route level code-splitting
   // this generates a separate chunk (about.[hash].js) for this route
