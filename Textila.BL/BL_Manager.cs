@@ -19,9 +19,9 @@ namespace Textila.BL
         {
             return DA.getAllCounts();
         }
-        public List<BlendEntity> getAllBlends()
+        public List<BlendEntity> getAllBlends(string search)
         {
-            return DA.getAllBlends();
+            return DA.getAllBlends(search);
         }
 
         public CountEntity getCountById(int id)

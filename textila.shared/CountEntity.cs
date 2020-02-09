@@ -9,8 +9,8 @@ namespace Textila.Shared
     public class CountEntity
     {
         public int CountId { get; set; }
-        public int CountName { get; set; }
-        public int SingleDouble { get; set; }
+        public string CountName { get; set; }
+        public string SingleDouble { get; set; }
         public int Blend { get; set; }
         public string CreatedBy { get; set; }
         public string Description { get; set; }

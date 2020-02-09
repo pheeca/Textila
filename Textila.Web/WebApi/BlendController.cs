@@ -13,9 +13,9 @@ namespace Textila.Web.WebApi
     {
         BL_Manager BL = new BL_Manager();
         // GET api/<controller>
-        public IEnumerable<BlendEntity> Get()
+        public IEnumerable<BlendEntity> Get(string search=null)
         {
-            return BL.getAllBlends();
+            return BL.getAllBlends(search);
         }
 
         // GET api/<controller>/5
@@ -25,15 +25,15 @@ namespace Textila.Web.WebApi
         }
 
         // POST api/<controller>
-        public void Post([FromBody]BlendEntity value)
+        public bool Post([FromBody]BlendEntity value)
         {
-            BL.saveBlend(value);
+           return BL.saveBlend(value);
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]BlendEntity value)
+        public bool Put(int id, [FromBody]BlendEntity value)
         {
-            BL.updateBlend(id, value);
+          return  BL.updateBlend(id, value);
         }
 
         // DELETE api/<controller>/5

@@ -1,6 +1,6 @@
 import axios from 'axios'
 const client = axios.create({
-  baseURL: window.location.hostname=="localhost"?'http://localhost:56415/':window.location.href,
+  baseURL: 'http://textilabeta.pheeca.com/',//window.location.hostname=="localhost"?'http://localhost:56415/':window.location.href,
   json: true
 })
 export default {
@@ -18,6 +18,28 @@ export default {
       }).then(req => {
         return req.data
       })
+    },
+    searchBlends(value){
+      return  this.execute('get', '/api/blend?search='+value)
+    },
+    getCounts () {
+      return  this.execute('get', '/api/count')
+    },
+    getBlends () {
+      return  this.execute('get', '/api/blend')
+    },
+    createBlend (data) {
+      return this.execute('post', '/api/blend', data)
+    },
+    
+    getBlend (id) {
+      return this.execute('get', `/api/Blend/${id}`)
+    },
+    updateBlend (id, data) {
+      return this.execute('put', `/api/Blend/${id}`, data)
+    },
+    createCount (data) {
+      return this.execute('post', '/api/count', data)
     },
     getPosts () {
       return  this.execute('get', '/api/count/1')

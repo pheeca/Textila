@@ -15,8 +15,8 @@ namespace Textila.DA
     public partial class Count
     {
         public int CountId { get; set; }
-        public Nullable<int> CountName { get; set; }
-        public Nullable<int> SingleDouble { get; set; }
+        public string CountName { get; set; }
+        public string SingleDouble { get; set; }
         public Nullable<int> Blend { get; set; }
         public string Description { get; set; }
         public string CreatedBy { get; set; }

@@ -8,10 +8,12 @@ import Main from './layout/Main.vue';
 
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 
+
 Vue.config.productionTip = false;
 
 Vue.component('centered-layout',Centered);
 Vue.component('main-layout',Main);
+
 
 new Vue({
   vuetify,

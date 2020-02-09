@@ -7,18 +7,22 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "postbuild": "npm run createdir && npm run copytoserver && npm run prodUI",
+    "postbuild": "npm run createdir && npm run copytoserver && npm run prodUI && npm run buildServer && npm run publishServer && npm run cleanBuild",
     "createdir": "shx mkdir -p ../Textila.Web/Content ../Textila.Web/Scripts ../Textila.Web/fonts ../Textila.Web/img ../Textila.Web/Views/Home",
     "copytoserver": "shx cp -r dist\\Content\\* ../Textila.Web/Content && shx cp -r dist\\Scripts\\* ../Textila.Web/Scripts && shx cp -r dist\\fonts\\* ../Textila.Web/fonts && shx cp -r dist\\img\\* ../Textila.Web/img && shx cp -r dist\\*.ico ../Textila.Web/ && shx cp -r dist\\*.html ../Textila.Web/Views/Home",
-    "prodUI": "shx mkdir -p prodUI prodUI/Content prodUI/Scripts prodUI/fonts prodUI/img prodUI/Views/Home && shx cp -r dist\\Content\\* prodUI/Content && shx cp -r dist\\Scripts\\* prodUI/Scripts && shx cp -r dist\\fonts\\* prodUI/fonts && shx cp -r dist\\img\\* prodUI/img && shx cp -r dist\\*.ico prodUI/ && shx cp -r dist\\*.html prodUI/Views/Home && cd prodUI && bestzip ..\\bundle.zip * && cd ../ && shx rm /prodUI",
-    "test": "del prodUI\\* /Q /S *.*"
-  },
+    "prodUI": "shx mkdir -p prodUI prodUI/Content prodUI/Scripts prodUI/fonts prodUI/img prodUI/Views/Home && shx cp -r dist\\Content\\* prodUI/Content && shx cp -r dist\\Scripts\\* prodUI/Scripts && shx cp -r dist\\fonts\\* prodUI/fonts && shx cp -r dist\\img\\* prodUI/img && shx cp -r dist\\*.ico prodUI/ && shx cp -r dist\\*.html prodUI/Views/Home && cd prodUI && bestzip ..\\dist\\bundleUI.zip * && cd ../ && rmdir /s /q prodUI\\",
+    "buildServer":"C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\msbuild.exe ..//Textila.sln  /t:Rebuild /p:outdir=..//Textila.Web//build /p:Configuration=Release /p:Platform=\"Any CPU\" /p:VisualStudioVersion=14.0",
+    "publishServer":"cd ..//Textila.Web//build//_PublishedWebsites//Textila.Web// && bestzip ../../../../textila/dist/bundleServer.zip * && cd ../../../../textila/ && rmdir /s /q ..\\Textila.Web\\build",
+    "cleanBuild":"rmdir /s /q dist\\Content && rmdir /s /q dist\\fonts && rmdir /s /q dist\\img && rmdir /s /q dist\\Scripts && shx rm dist/*.html dist/*.ico",
+    "test": ""
+    },
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.4.4",
     "material-design-icons-iconfont": "^5.0.1",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3",
+    "vue-simple-search-dropdown": "^1.0.1",
     "vuetify": "^2.1.0"
   },
   "devDependencies": {

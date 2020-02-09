@@ -25,7 +25,6 @@ namespace Textila.DA
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Blend> Blends { get; set; }
         public virtual DbSet<Count> Counts { get; set; }
     }

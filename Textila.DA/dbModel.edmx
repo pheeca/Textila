@@ -9,32 +9,22 @@
           <Key>
             <PropertyRef Name="BlendId" />
           </Key>
-          <Property Name="BlendId" Type="int" Nullable="false" />
-          <Property Name="BlendName" Type="nvarchar" MaxLength="20" />
+          <Property Name="BlendId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlendName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Count">
           <Key>
             <PropertyRef Name="CountId" />
           </Key>
-          <Property Name="CountId" Type="int" Nullable="false" />
-          <Property Name="CountName" Type="int" />
-          <Property Name="SingleDouble" Type="int" />
+          <Property Name="CountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SingleDouble" Type="nvarchar" MaxLength="50" />
           <Property Name="Blend" Type="int" />
-          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="ModifiedOn" Type="datetime" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Count_Blend">
           <End Role="Blend" Type="Self.Blend" Multiplicity="0..1" />
@@ -51,7 +41,6 @@
         <EntityContainer Name="textilaModelStoreContainer">
           <EntitySet Name="Blend" EntityType="Self.Blend" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Count" EntityType="Self.Count" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Count_Blend" Association="Self.FK_Count_Blend">
             <End Role="Blend" EntitySet="Blend" />
             <End Role="Count" EntitySet="Count" />
@@ -62,7 +51,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="textilaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="textilaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="sysdiagrams" EntityType="textilaModel.sysdiagram" />
           <EntitySet Name="Blends" EntityType="textilaModel.Blend" />
           <EntitySet Name="Counts" EntityType="textilaModel.Count" />
           <AssociationSet Name="FK_Count_Blend" Association="textilaModel.FK_Count_Blend">
@@ -70,33 +58,23 @@
             <End Role="Count" EntitySet="Counts" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="Blend">
           <Key>
             <PropertyRef Name="BlendId" />
           </Key>
-          <Property Name="BlendId" Type="Int32" Nullable="false" />
-          <Property Name="BlendName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BlendId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlendName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Counts" Relationship="textilaModel.FK_Count_Blend" FromRole="Blend" ToRole="Count" />
         </EntityType>
         <EntityType Name="Count">
           <Key>
             <PropertyRef Name="CountId" />
           </Key>
-          <Property Name="CountId" Type="Int32" Nullable="false" />
-          <Property Name="CountName" Type="Int32" />
-          <Property Name="SingleDouble" Type="Int32" />
+          <Property Name="CountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SingleDouble" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Blend" Type="Int32" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -121,17 +99,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="textilaModelStoreContainer" CdmEntityContainer="textilaEntities">
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="textilaModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Blends">
             <EntityTypeMapping TypeName="textilaModel.Blend">
               <MappingFragment StoreEntitySet="Blend">

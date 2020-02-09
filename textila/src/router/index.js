@@ -13,7 +13,7 @@ const CRUDRoutes =[{
   component: () => import(/* webpackChunkName: "about" */ '../views/Blend/Create.vue'),
   meta: { requiresAuth: true, layout:'main' }
 },{
-  path: '/Blend/Edit',
+  path: '/Blend/Edit/:id',
   name: 'Edit Blend',
   // route level code-splitting
   // this generates a separate chunk (about.[hash].js) for this route
@@ -22,11 +22,35 @@ const CRUDRoutes =[{
   meta: { requiresAuth: true, layout:'main' }
 },{
   path: '/Blend',
-  name: 'Create List',
+  name: 'Blend List',
   // route level code-splitting
   // this generates a separate chunk (about.[hash].js) for this route
   // which is lazy-loaded when the route is visited.
   component: () => import(/* webpackChunkName: "about" */ '../views/Blend/List.vue'),
+  meta: { requiresAuth: true, layout:'main' }
+},{
+  path: '/Count/Create',
+  name: 'Create Count',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/Count/Create.vue'),
+  meta: { requiresAuth: true, layout:'main' }
+},{
+  path: '/Count/Edit/:id',
+  name: 'Edit Count',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/Count/Edit.vue'),
+  meta: { requiresAuth: true, layout:'main' }
+},{
+  path: '/Count',
+  name: 'Count List',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/Count/List.vue'),
   meta: { requiresAuth: true, layout:'main' }
 }]
 

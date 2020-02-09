@@ -23,8 +23,8 @@ namespace Textila.DA.Manager
                 return db.Counts.ToList().Select(e => new CountEntity {
                     Blend = e.Blend ?? 0,
                     CountId = e.CountId,
-                    CountName = e.CountName ?? 0,
-                    SingleDouble = e.SingleDouble ?? 0,
+                    CountName = e.CountName,
+                    SingleDouble = e.SingleDouble,
                     CreatedBy = e.CreatedBy,
                     CreatedOn = e.CreatedOn,
                     Description = e.Description,
@@ -42,8 +42,8 @@ namespace Textila.DA.Manager
                 {
                     Blend = e.Blend ?? 0,
                     CountId = e.CountId,
-                    CountName = e.CountName ?? 0,
-                    SingleDouble = e.SingleDouble ?? 0,
+                    CountName = e.CountName,
+                    SingleDouble = e.SingleDouble,
                     CreatedBy = e.CreatedBy,
                     CreatedOn = e.CreatedOn,
                     Description = e.Description,
@@ -54,11 +54,20 @@ namespace Textila.DA.Manager
         }
 
 
-        public List<BlendEntity> getAllBlends()
+        public List<BlendEntity> getAllBlends(string search)
         {
             using (var db = new textilaEntities())
             {
-                return db.Blends.ToList().Select(e => new BlendEntity
+                List<Blend> blends;
+                if (string.IsNullOrWhiteSpace(search))
+                {
+                    blends = db.Blends.ToList();
+                }
+                else
+                {
+                    blends = db.Blends.Where(e=>e.BlendName.Contains(search)).ToList();
+                }
+                return blends.Select(e => new BlendEntity
                 {
                     BlendId = e.BlendId,
                     BlendName = e.BlendName
@@ -88,10 +97,10 @@ namespace Textila.DA.Manager
             {
                 try
                 {
-                    db.Blends.Add(blend);
+                    blend= db.Blends.Add(blend);
                     db.SaveChanges();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     return false;
                 }
@@ -121,7 +130,7 @@ namespace Textila.DA.Manager
                     db.Counts.Add(count);
                     db.SaveChanges();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     return false;
                 }

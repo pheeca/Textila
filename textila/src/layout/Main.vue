@@ -129,10 +129,11 @@
       dialog: false,
       drawer: null,
       items: [
-        { icon: 'mdi-contacts', text: 'Home', link:'/' },
-        { icon: 'mdi-history', text: 'About', link:'/About' },
-        { icon: 'mdi-content-copy', text: 'Duplicates', link: '/blend'},
-        {
+        { icon: 'dashboard', text: 'Home', link:'/' },
+       // { icon: 'mdi-history', text: 'About', link:'/About' },
+        { icon: 'fiber_manual_record', text: 'Blend', link: '/Blend'},
+        { icon: 'fiber_manual_record', text: 'Count', link: '/Count'},
+      /*  {
           icon: 'mdi-chevron-up',
           'icon-alt': 'mdi-chevron-down',
           text: 'Labels',
@@ -158,7 +159,7 @@
         { icon: 'mdi-message', text: 'Send feedback' },
         { icon: 'mdi-help-circle', text: 'Help' },
         { icon: 'mdi-cellphone-link', text: 'App downloads' },
-        { icon: 'mdi-keyboard', text: 'Go to the old version' },
+        { icon: 'mdi-keyboard', text: 'Go to the old version' },*/
       ],
     }),
   }

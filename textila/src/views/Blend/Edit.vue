@@ -1,44 +1,76 @@
 <template>
       <v-content>
-      <v-container
-        class="fill-height"
-        fluid
+    <v-form
+      ref="form"
+      v-model="valid"
+      lazy-validation
+    > 
+      <v-text-field
+        v-model="name"
+        :counter="10"
+        :rules="nameRules"
+        label="Name"
+        required
+      ></v-text-field>
+  
+      <v-btn
+        :disabled="!valid"
+        color="success"
+        class="mr-4"
+        @click="create"
       >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-tooltip right>
-            <template v-slot:activator="{ on }">
-              <v-btn
-                :href="source"
-                icon
-                large
-                target="_blank"
-                v-on="on"
-              >
-                <v-icon large>mdi-code-tags</v-icon>
-              </v-btn>
-            </template>
-            <span>Source</span>
-          </v-tooltip>
-          <v-tooltip right>
-            <template v-slot:activator="{ on }">
-              <v-btn
-                icon
-                large
-                href="https://codepen.io/johnjleider/pen/MNYLdL"
-                target="_blank"
-                v-on="on"
-              >
-                <v-icon large>mdi-codepen</v-icon>
-              </v-btn>
-            </template>
-            <span>Codepen</span>
-          </v-tooltip>
-        </v-row>
-      </v-container>
-    </v-content>
-  
-  
+        Create
+      </v-btn> <v-snackbar
+      v-model="snackbar"
+    >
+      {{ text }}
+      <v-btn
+        color="pink"
+        text
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
+    </v-form>
+      </v-content>
 </template>
+<script>
+
+import backendServer from './../../services/backendService';
+ export default {
+    data: () => ({
+      search:'',
+      valid: true,
+      name: '',
+      text: 'Created!',
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      ],
+      snackbar:false,
+    }),
+  computed: {
+  },
+watch: {
+     
+    },
+    mounted:function(){
+      backendServer.getBlend(this.$route.params.id)
+      .then((data)=>{
+          this.name=data.BlendName;
+      })
+    },
+    methods: {
+      
+      create () {
+        if (this.$refs.form.validate()) {
+          backendServer.updateBlend(this.$route.params.id,{ BlendName: this.name}).then(()=>{
+
+          this.snackbar = true
+          });
+        }
+      },
+    },
+  }
+</script>
