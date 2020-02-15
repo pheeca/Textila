@@ -13,9 +13,9 @@
               <v-btn icon class="mx-0" :to="`/${title}/Edit/${props.item.BlendId}`">
                   <v-icon color="teal">edit</v-icon>
               </v-btn>
-              <v-btn icon class="mx-0" @click="deleteItem(props.item)">
+              <!--<v-btn icon class="mx-0" @click="deleteItem(props.item)">
                   <v-icon color="pink">delete</v-icon>
-              </v-btn>
+              </v-btn>-->
               </td>
               </tr>
           </template>

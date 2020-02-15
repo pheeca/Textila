@@ -48,7 +48,8 @@ namespace Textila.DA.Manager
                     CreatedOn = e.CreatedOn,
                     Description = e.Description,
                     ModifiedBy = e.ModifiedBy,
-                    ModifiedOn = e.ModifiedOn
+                    ModifiedOn = e.ModifiedOn,
+                    BlendName = e.Blend1.BlendName
                 }).FirstOrDefault();
             }
         }
@@ -159,7 +160,7 @@ namespace Textila.DA.Manager
                 try
                 {
                     var result = db.Counts.SingleOrDefault(b => b.CountId == id);
-                    result = count;
+                    db.Entry(result).CurrentValues.SetValues(count);
                     db.SaveChanges();
                 }
                 catch (Exception)
@@ -184,7 +185,8 @@ namespace Textila.DA.Manager
                 try
                 {
                     var result = db.Blends.SingleOrDefault(b => b.BlendId == id);
-                    result = blend;
+                    //result = blend;
+                    db.Entry(result).CurrentValues.SetValues(blend);
                     db.SaveChanges();
                 }
                 catch (Exception)

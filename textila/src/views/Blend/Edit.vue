@@ -19,7 +19,7 @@
         class="mr-4"
         @click="create"
       >
-        Create
+        Edit
       </v-btn> <v-snackbar
       v-model="snackbar"
     >
@@ -43,7 +43,7 @@ import backendServer from './../../services/backendService';
       search:'',
       valid: true,
       name: '',
-      text: 'Created!',
+      text: 'Updated!',
       nameRules: [
         v => !!v || 'Name is required',
         v => (v && v.length <= 10) || 'Name must be less than 10 characters',
@@ -52,22 +52,20 @@ import backendServer from './../../services/backendService';
     }),
   computed: {
   },
+  mounted:function(){
+    backendServer.getBlend(this.$route.params.id).then(a=>{
+      this.name=a.BlendName;
+    })
+  },
 watch: {
      
-    },
-    mounted:function(){
-      backendServer.getBlend(this.$route.params.id)
-      .then((data)=>{
-          this.name=data.BlendName;
-      })
     },
     methods: {
       
       create () {
         if (this.$refs.form.validate()) {
           backendServer.updateBlend(this.$route.params.id,{ BlendName: this.name}).then(()=>{
-
-          this.snackbar = true
+            this.snackbar = true
           });
         }
       },
